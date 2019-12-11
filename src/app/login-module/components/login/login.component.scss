@@ -1,0 +1,16 @@
+section {
+  height: 100%;
+
+  .form-container {
+    height: 100%;
+
+    .link-container {
+      display: flex;
+      justify-content: flex-end;
+
+      & a:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}
