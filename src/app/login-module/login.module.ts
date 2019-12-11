@@ -5,19 +5,22 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { RouterModule } from '@angular/router';
 import { ValidationErrorsComponent } from '../common/components/validationsErrorsComponent/validationErrorsComponent';
 import { CommonModule } from '@angular/common';
+import { LoginResourceService } from './services/loginResource.service';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   imports: [
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   declarations: [
     LoginComponent,
     RegistrationComponent,
     ValidationErrorsComponent
   ],
-  providers: []
+  providers: [LoginResourceService]
 })
 export class LoginModule { }

@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {LoginResourceService} from '../../services/loginResource.service';
 
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
 
   model: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private resourceService: LoginResourceService) {
+  }
 
   ngOnInit(): void {
     this.model = this.formBuilder.group({
@@ -20,7 +25,10 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
-    console.log(this.model);
+    this.resourceService.login({
+      login: this.model.controls['login'].value,
+      password: this.model.controls['password'].value
+    });
   }
 
   public isShowValidationMessage(control: FormControl): boolean {

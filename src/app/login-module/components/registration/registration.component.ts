@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { LoginResourceService } from '../../services/loginResource.service';
 
 @Component({
   selector: 'registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class RegistrationComponent implements OnInit {
 
   model: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder,
+              private resourceService: LoginResourceService) {}
 
   ngOnInit(): void {
     this.model = this.formBuilder.group({
@@ -26,7 +29,12 @@ export class RegistrationComponent implements OnInit {
   }
 
   public registration(): void {
-    console.log(this.model);
+    this.resourceService.register({
+      firstName: this.model.controls['firstName'].value,
+      lastName: this.model.controls['lastName'].value,
+      email: this.model.controls['email'].value,
+      password: this.model.controls['password'].value
+    });
   }
 
   public isShowValidationMessage(control: FormControl): boolean {
