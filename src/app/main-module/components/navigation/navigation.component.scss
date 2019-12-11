@@ -1,0 +1,17 @@
+nav {
+  padding-top: 15px;
+  padding-bottom: 15px;
+
+  .menu-toggle {
+    border: none;
+    background: transparent;
+
+    &:focus {
+      outline: none;
+    }
+
+    i {
+      color: #fff;
+    }
+  }
+}
