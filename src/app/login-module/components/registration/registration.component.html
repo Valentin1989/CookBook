@@ -1,0 +1,53 @@
+<section class="container">
+  <div class="row justify-content-center align-items-center form-container">
+    <form class="col-sm-6 col-xs-12"
+          novalidate
+          [formGroup]="model">
+      <div class="form-group">
+        <label for="firstName">Имя</label>
+        <input id="firstName"
+               type="text"
+               class="form-control"
+               formControlName="firstName">
+        <validation-message [errors]="model.controls['firstName'].errors"
+                            *ngIf="isShowValidationMessage(model.controls['firstName'])"></validation-message>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Фамилия</label>
+        <input id="lastName"
+               type="text"
+               class="form-control"
+               formControlName="lastName">
+        <validation-message [errors]="model.controls['lastName'].errors"
+                            *ngIf="isShowValidationMessage(model.controls['lastName'])"></validation-message>
+      </div>
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input id="email"
+               type="email"
+               class="form-control"
+               formControlName="email">
+        <validation-message [errors]="model.controls['email'].errors"
+                            *ngIf="isShowValidationMessage(model.controls['email'])"></validation-message>
+      </div>
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input id="password"
+               type="password"
+               class="form-control"
+               formControlName="password">
+        <validation-message [errors]="model.controls['password'].errors"
+                            *ngIf="isShowValidationMessage(model.controls['password'])"></validation-message>
+      </div>
+      <div class="buttons-container">
+        <button type="submit"
+                [disabled]="model.invalid"
+                class="btn btn-primary"
+                (click)="registration()">Регистрация</button>
+        <button type="button"
+                [routerLink]="['/']"
+                class="btn btn-primary">Отмена</button>
+      </div>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+section {
+  height: 100%;
+
+  .form-container {
+    height: 100%;
+
+    .buttons-container {
+      padding-top: 15px;
+
+      button:first-child {
+        margin-right: 15px;
+      }
+    }
+  }
+}

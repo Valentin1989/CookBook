@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class LoginComponent implements OnInit {
+
+export class RegistrationComponent implements OnInit {
 
   model: FormGroup;
 
@@ -14,12 +15,17 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.model = this.formBuilder.group({
-      login: ['', Validators.required ],
-      password: ['', Validators.required ],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(6)
+      ])]
     });
   }
 
-  public login(): void {
+  public registration(): void {
     console.log(this.model);
   }
 
