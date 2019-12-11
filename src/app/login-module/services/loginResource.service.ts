@@ -9,16 +9,16 @@ export class LoginResourceService {
 
   constructor(private http: HttpClient) { }
 
-  public register(data: RegistrationModel): Observable<any> {
-    return this.http.post('', data)
+  public register(data: RegistrationModel) {
+    return this.http.post('http://localhost:3002/user/registerNewUser', data, {responseType: 'text'})
       .pipe(response => {
         return response;
       });
   }
 
   public login(data: LoginModel) {
-    return this.http.post('', data)
-      .subscribe(response => {
+    return this.http.post('http://localhost:3002/user/login', data, {responseType: 'text'})
+      .pipe(response => {
         return response;
       });
   }

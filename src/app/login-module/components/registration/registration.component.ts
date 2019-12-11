@@ -34,6 +34,8 @@ export class RegistrationComponent implements OnInit {
       lastName: this.model.controls['lastName'].value,
       email: this.model.controls['email'].value,
       password: this.model.controls['password'].value
+    }).subscribe(data => {
+      console.log(data);
     });
   }
 

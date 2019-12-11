@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.resourceService.login({
       login: this.model.controls['login'].value,
       password: this.model.controls['password'].value
-    });
+    }).subscribe(data => console.log(data));
   }
 
   public isShowValidationMessage(control: FormControl): boolean {
