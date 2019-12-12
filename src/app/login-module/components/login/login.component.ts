@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import {LoginResourceService} from '../../services/loginResource.service';
 
 @Component({
@@ -14,21 +15,25 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private resourceService: LoginResourceService) {
+    private resourceService: LoginResourceService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
     this.model = this.formBuilder.group({
-      login: ['', Validators.required ],
+      email: ['', Validators.required ],
       password: ['', Validators.required ],
     });
   }
 
   public login(): void {
     this.resourceService.login({
-      login: this.model.controls['login'].value,
-      password: this.model.controls['password'].value
-    }).subscribe(data => console.log(data));
+      email: this.model.controls['email'].value,
+      password: this.model.controls['password'].value})
+      .subscribe(result => {
+        localStorage.setItem('access_token', result['jwtToken']);
+        this.router.navigate(['home']);
+      });
   }
 
   public isShowValidationMessage(control: FormControl): boolean {

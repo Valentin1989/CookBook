@@ -1,6 +1,10 @@
+const Users = require('../models/users.model');
+const authorizationService = require('../services/authorization.service');
+
 exports.addNewUser = function (request, response) {
+  const user = new Users(request.body);
+  user.save();
   response.send('Новый юзер создан');
 };
-exports.authorizationUser = function (request, response) {
-  response.send('Вход выполнен');
-};
+
+exports.authorizationUser = authorizationService.authorization;

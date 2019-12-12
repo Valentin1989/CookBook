@@ -17,9 +17,13 @@ export class LoginResourceService {
   }
 
   public login(data: LoginModel) {
-    return this.http.post('http://localhost:3002/user/login', data, {responseType: 'text'})
+    return this.http.post('http://localhost:3002/user/login', data)
       .pipe(response => {
         return response;
       });
+  }
+
+  public logout(): void {
+    localStorage.removeItem('access_token');
   }
 }
