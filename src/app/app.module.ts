@@ -35,6 +35,6 @@ export function tokenGetter() {
   providers: [
     AuthGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

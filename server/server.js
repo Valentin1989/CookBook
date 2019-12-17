@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const userRouter = require("./routes/user.router.js");
+const categoryRouter = require('./routes/category.router');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({
 app.use(cors());
 
 app.use('/user', userRouter);
+app.use('/category', categoryRouter);
 
 app.use(function (req, res, next) {
   res.status(404).send("Not Found")

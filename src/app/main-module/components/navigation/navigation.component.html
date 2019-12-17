@@ -1,7 +1,9 @@
 <nav class="navbar navbar-dark bg-dark">
   <button type="button"
-          (click)="openMenu()"
           class="menu-toggle">
-    <i class="fas fa-bars fa-lg"></i>
+    <i class="fa fa-bars fa-lg" #toggleMenuButton (click)="toggleMenu()"></i>
   </button>
 </nav>
+<menu-panel *ngIf="isMenuOpen"
+            [toggleMenuButton]="toggleMenuButton"
+            [isMenuOpen]="isMenuOpen"></menu-panel>
