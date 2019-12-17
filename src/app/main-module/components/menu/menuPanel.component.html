@@ -21,6 +21,8 @@
                 (click)="hideCreateNewCategory()">Отмена</button>
       </div>
     </li>
-    <li *ngFor="let category of categoryList | async">{{category.categoryName}}</li>
+    <li *ngFor="let category of categoryList | async">
+      <a [routerLink]="['category', category.id]">{{category.categoryName}}</a>
+    </li>
   </ul>
 </div>

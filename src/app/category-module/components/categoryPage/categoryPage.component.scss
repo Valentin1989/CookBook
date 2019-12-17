@@ -1,0 +1,25 @@
+.header {
+  padding: 20px 15px;
+
+  .nav-container {
+    padding: 10px;
+    color: #fff;
+
+    ul {
+      margin: 0;
+      padding: 0;
+
+      li {
+        list-style-type: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

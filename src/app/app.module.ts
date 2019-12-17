@@ -10,6 +10,7 @@ import { AppReducer } from './common/store';
 
 import { LoginModule } from './login-module/login.module';
 import { MainModule } from './main-module/main.module';
+import { CategoryModule } from './category-module/category.module';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
@@ -24,6 +25,7 @@ export function tokenGetter() {
     AppRoutingModule,
     LoginModule,
     MainModule,
+    CategoryModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
