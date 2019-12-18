@@ -6,9 +6,11 @@ import { LoginComponent } from './login-module/components/login/login.component'
 import { RegistrationComponent } from './login-module/components/registration/registration.component';
 import { MainPageComponent } from './main-module/components/mainPage/mainPage.component';
 import { CategoryPageComponent } from './category-module/components/categoryPage/categoryPage.component';
+import { CreateRecipeComponent } from './category-module/components/createRecipe/createRecipe.component';
 
 const categoryRoutes: Routes = [
-  { path: 'category/:id', component: CategoryPageComponent }
+  { path: 'category/:id', component: CategoryPageComponent },
+  { path: 'category/:id/addNew', component: CreateRecipeComponent }
 ];
 
 const routes: Routes = [

@@ -1,0 +1,59 @@
+.recipe-container {
+  margin-top: 15px;
+  padding: 20px;
+  border: 1px solid #cecece;
+  border-radius: 5px;
+
+  .add-image-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    border: 1px solid #cecece;
+    border-radius: 5px;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      width: 50px;
+      height: 50px;
+    }
+
+    .circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #cecece;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      button {
+        position: absolute;
+        border: none;
+        background: transparent;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    img {
+      max-height: 300px;
+    }
+  }
+
+  .buttons-block {
+    button {
+      border: none;
+      background: transparent;
+    }
+  }
+}

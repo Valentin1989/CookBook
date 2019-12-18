@@ -1,0 +1,74 @@
+<section class="container">
+  <form class="row recipe-container">
+    <div class="col-sm-6">
+      <div class="add-image-block">
+        <div class="circle" *ngIf="!isShowPreviewImage">
+          <button type="button">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+        <input type="file"
+               accept="image/*"
+               #uploadImage
+               (change)="onSelectFile($event)">
+        <div *ngIf="isShowPreviewImage">
+          <img class="img-fluid"
+               #preview
+               (click)="uploadImage.click()"
+               [src]="">
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <form>
+        <div class="form-group row">
+          <label class="col-form-label col-sm-3">Название:</label>
+          <div class="col-sm-7">
+            <input class="form-control" type="text">
+          </div>
+        </div>
+        <hr>
+        <div>
+          <span>Ингридиенты:</span>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-sm-3">Название:</label>
+          <div class="col-sm-7">
+            <input class="form-control" type="text">
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-sm-3">Количество:</label>
+          <div class="col-sm-7">
+            <input class="form-control" type="text">
+          </div>
+          <div class="col-sm-2 buttons-block">
+            <button type="button"><i class="far fa-plus-square"></i></button>
+            <button type="button"><i class="far fa-minus-square"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-12">
+      <hr>
+      <div class="form-group">
+        <label>Описание: </label>
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <hr>
+      <div>
+        <span>Шаги приготовления:</span>
+        <div class="buttons-block">
+          <button type="button"><i class="far fa-plus-square"></i></button>
+          <button type="button"><i class="far fa-minus-square"></i></button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Шаг 1</label>
+        <textarea class="form-control" rows="3"></textarea>
+      </div>
+    </div>
+  </form>
+</section>

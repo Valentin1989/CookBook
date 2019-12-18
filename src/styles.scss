@@ -6,3 +6,10 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
+
+create-recipe {
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 56px);
+}
