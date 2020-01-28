@@ -1,5 +1,5 @@
 <section class="container">
-  <form class="row recipe-container">
+  <form class="row recipe-container" [formGroup]="model">
     <div class="col-sm-6">
       <div class="add-image-block">
         <div class="circle" *ngIf="!isShowPreviewImage">
@@ -20,40 +20,49 @@
       </div>
     </div>
     <div class="col-sm-6">
-      <form>
+
         <div class="form-group row">
           <label class="col-form-label col-sm-3">Название:</label>
           <div class="col-sm-7">
-            <input class="form-control" type="text">
+            <input class="form-control" type="text" formControlName="name">
           </div>
         </div>
+
         <hr>
+
         <div>
           <span>Ингридиенты:</span>
         </div>
-        <div class="form-group row">
-          <label class="col-form-label col-sm-3">Название:</label>
-          <div class="col-sm-7">
-            <input class="form-control" type="text">
+        <div formArrayName="ingredients">
+          <div *ngFor="let ingredient of model.get('ingredients').controls; let i = index">
+            <div formGroupName="{{i}}">
+              <div class="form-group row">
+                <label class="col-form-label col-sm-3">Название:</label>
+                <div class="col-sm-7">
+                  <input class="form-control" type="text" formControlName="name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-sm-3">Количество:</label>
+                <div class="col-sm-7">
+                  <input class="form-control" type="text" formControlName="quantity">
+                </div>
+                <div class="col-sm-2 buttons-block">
+                  <button type="button" (click)="addIngredient()"><i class="far fa-plus-square"></i></button>
+                  <button type="button"><i class="far fa-minus-square"></i></button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-form-label col-sm-3">Количество:</label>
-          <div class="col-sm-7">
-            <input class="form-control" type="text">
-          </div>
-          <div class="col-sm-2 buttons-block">
-            <button type="button"><i class="far fa-plus-square"></i></button>
-            <button type="button"><i class="far fa-minus-square"></i></button>
-          </div>
-        </div>
-      </form>
+
+
     </div>
     <div class="col-sm-12">
       <hr>
       <div class="form-group">
         <label>Описание: </label>
-        <textarea class="form-control" rows="3"></textarea>
+        <textarea class="form-control" rows="3" formControlName="description"></textarea>
       </div>
     </div>
     <div class="col-sm-12">
@@ -61,13 +70,15 @@
       <div>
         <span>Шаги приготовления:</span>
         <div class="buttons-block">
-          <button type="button"><i class="far fa-plus-square"></i></button>
+          <button type="button" (click)="addStep()"><i class="far fa-plus-square"></i></button>
           <button type="button"><i class="far fa-minus-square"></i></button>
         </div>
       </div>
-      <div class="form-group">
-        <label>Шаг 1</label>
-        <textarea class="form-control" rows="3"></textarea>
+      <div formArrayName="steps" class="form-group" *ngFor="let stepDescription of model.get('steps').controls; let i = index">
+        <div formGroupName="{{i}}">
+          <label>Шаг {{i + 1}}</label>
+          <textarea class="form-control" rows="3" formControlName="stepDescription"></textarea>
+        </div>
       </div>
     </div>
   </form>

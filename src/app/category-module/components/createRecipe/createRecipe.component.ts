@@ -1,5 +1,5 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {Component, ElementRef, ViewChild, OnInit} from '@angular/core';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'create-recipe',
@@ -7,17 +7,36 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./createRecipe.component.scss']
 })
 
-export class CreateRecipeComponent {
+export class CreateRecipeComponent implements OnInit {
 
   @ViewChild('preview', {static: false}) preview: ElementRef;
   fileData: File = null;
   isShowPreviewImage: boolean;
+  model: any;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
     this.isShowPreviewImage = false;
   }
 
-   onSelectFile(fileInput: any) {
+  ngOnInit(): void {
+    this.model = this.formBuilder.group({
+      name: ['', Validators.required],
+      ingredients: this.formBuilder.array([
+        this.formBuilder.group({
+          name: ['', Validators.required],
+          quantity: ['', Validators.required]
+        })
+      ]),
+      description: [''],
+      steps: this.formBuilder.array([
+        this.formBuilder.group({
+          stepDescription: ['', Validators.required]
+        })
+      ])
+    });
+  }
+
+  onSelectFile(fileInput: any) {
      this.fileData = fileInput.target.files[0];
      if (!this.fileData) {
        this.preview.nativeElement.src = '';
@@ -37,5 +56,19 @@ export class CreateRecipeComponent {
        this.isShowPreviewImage = true;
        reader.readAsDataURL(this.fileData);
     }
+  }
+
+  addIngredient(): void {
+    this.model.get('ingredients').push(this.formBuilder.group({
+      name: ['', Validators.required],
+      quantity: ['', Validators.required]
+    }));
+    console.log(this.model.value);
+  }
+
+  addStep(): void {
+    this.model.get('steps').push(this.formBuilder.group({
+      stepDescription: ['', Validators.required]
+    }));
   }
 }
