@@ -24,7 +24,9 @@
         <div class="form-group row">
           <label class="col-form-label col-sm-3">Название:</label>
           <div class="col-sm-7">
-            <input class="form-control" type="text" formControlName="name">
+            <input class="form-control"
+                   type="text"
+                   formControlName="name">
           </div>
         </div>
 
@@ -39,17 +41,29 @@
               <div class="form-group row">
                 <label class="col-form-label col-sm-3">Название:</label>
                 <div class="col-sm-7">
-                  <input class="form-control" type="text" formControlName="name">
+                  <input class="form-control"
+                         type="text"
+                         formControlName="name">
                 </div>
               </div>
               <div class="form-group row">
                 <label class="col-form-label col-sm-3">Количество:</label>
                 <div class="col-sm-7">
-                  <input class="form-control" type="text" formControlName="quantity">
+                  <input class="form-control"
+                         type="text"
+                         formControlName="quantity">
                 </div>
                 <div class="col-sm-2 buttons-block">
-                  <button type="button" (click)="addIngredient()"><i class="far fa-plus-square"></i></button>
-                  <button type="button"><i class="far fa-minus-square"></i></button>
+                  <button *ngIf="isShowAddButton(i+1)"
+                          type="button"
+                          (click)="addIngredient()">
+                    <i class="far fa-plus-square"></i>
+                  </button>
+                  <button type="button"
+                          [disabled]="isDisabledRemoveIngredientsItem()"
+                          (click)="removeIngredientItem(i)">
+                    <i class="far fa-minus-square"></i>
+                  </button>
                 </div>
               </div>
             </div>

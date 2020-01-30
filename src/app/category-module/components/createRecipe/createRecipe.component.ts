@@ -34,9 +34,12 @@ export class CreateRecipeComponent implements OnInit {
         })
       ])
     });
+    this.model.get('ingredients').valueChanges.subscribe(value => {
+      console.log(value);
+    });
   }
 
-  onSelectFile(fileInput: any) {
+  onSelectFile(fileInput: any): void {
      this.fileData = fileInput.target.files[0];
      if (!this.fileData) {
        this.preview.nativeElement.src = '';
@@ -63,12 +66,25 @@ export class CreateRecipeComponent implements OnInit {
       name: ['', Validators.required],
       quantity: ['', Validators.required]
     }));
-    console.log(this.model.value);
   }
 
   addStep(): void {
     this.model.get('steps').push(this.formBuilder.group({
       stepDescription: ['', Validators.required]
     }));
+  }
+
+  isShowAddButton(itemIndex: number): boolean {
+    const result = this.model.get('ingredients').controls.length === itemIndex;
+    return result;
+  }
+
+  removeIngredientItem(itemIndex: number): void {
+    this.model.get('ingredients').controls.splice(itemIndex, 1);
+  }
+
+  isDisabledRemoveIngredientsItem(): boolean {
+    const result = this.model.get('ingredients').controls.length === 1;
+    return result;
   }
 }
